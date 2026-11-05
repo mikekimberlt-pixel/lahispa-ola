@@ -115,8 +115,11 @@ footer{
     background-color: peru;
     text-decoration-color: white;
     color: white;
-    height: 30px;
+    height: auto
+    min-height: 50px;
+    padding: 20px 0;
     line-height: 35px;
+    
 }
 
 nav{

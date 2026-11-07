@@ -35,20 +35,65 @@ sliderContenedor.addEventListener('touchend', (e) => {
       moverSlide(1);  /* Deslizó a la izquierda -> Siguiente */
     } else {
 
-    window.addEventListener('load', () => {
-    const bienvenida = document.getElementById('pantalla-bienvenida');
-    
-    // Espera 2 segundos mostrando el saludo, luego se desvanece
-    setTimeout(() => {
-        bienvenida.style.opacity = '0';
+window.addEventListener('DOMContentLoaded', () => {
+    const modal = document.getElementById('modal-bienvenida');
+    const btnIngresar = document.getElementById('btn-ingresar');
+    const inputNombre = document.getElementById('input-nombre');
+
+    // Función que procesa el nombre y genera el cartel flotante abajo
+    function iniciarBienvenida() {
+        let nombreUsuario = inputNombre.value.trim();
         
-        // Lo elimina del documento después de la animación para poder hacer clic en la página
-        setTimeout(() => bienvenida.remove(), 600);
-    }, 2000); 
-});
-      moverSlide(-1); /* Deslizó a la derecha -> Anterior */
+        if (!nombreUsuario) {
+            nombreUsuario = "visitante";
+        }
+
+        // Ocultar el formulario con una transición suave
+        modal.style.opacity = '0';
+        setTimeout(() => modal.remove(), 500);
+
+        // Crear el cartel de bienvenida en la esquina izquierda
+        let saludo = document.createElement('div');
+        saludo.innerText = `✨ ¡Sea bienvenido a Hispaniola, ${nombreUsuario}! ✨`;
+        
+        saludo.style.position = "fixed";
+        saludo.style.bottom = "20px";
+        saludo.style.left = "20px";
+        saludo.style.backgroundColor = "#8B4513";
+        saludo.style.color = "#ffffff";
+        saludo.style.padding = "14px 28px";
+        saludo.style.borderRadius = "25px";
+        saludo.style.zIndex = "10000";
+        saludo.style.fontFamily = "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif";
+        saludo.style.fontWeight = "bold";
+        saludo.style.boxShadow = "0 6px 20px rgba(0,0,0,0.2)";
+        saludo.style.transition = "opacity 0.6s ease, transform 0.6s ease";
+        saludo.style.transform = "translateY(50px)";
+        saludo.style.opacity = "0";
+
+        document.body.appendChild(saludo);
+
+        // Animación de entrada del cartelito
+        setTimeout(() => {
+            saludo.style.opacity = "1";
+            saludo.style.transform = "translateY(0)";
+        }, 100);
+
+        // Desvanecer el cartelito después de 5 segundos
+        setTimeout(() => {
+            saludo.style.opacity = "0";
+            saludo.style.transform = "translateY(20px)";
+            setTimeout(() => saludo.remove(), 600);
+        }, 5000);
     }
-  }
-  
-  xInicial = null; // Reinicia el detector
+
+    // Al hacer clic en el botón
+    btnIngresar.addEventListener('click', iniciarBienvenida);
+
+    // Al presionar Enter dentro del cuadro de texto
+    inputNombre.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            iniciarBienvenida();
+        }
+    });
 });

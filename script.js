@@ -50,6 +50,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
         // Ocultar el formulario con una transición suave
         modal.style.opacity = '0';
+      modal.style.pointerEvents = 'none';
         setTimeout(() => modal.remove(), 500);
 
         // Crear el cartel de bienvenida en la esquina izquierda

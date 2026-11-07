@@ -1,4 +1,3 @@
-let Index = 0;
 let xInicial = null;
 
 function moverSlide(direccion) {
@@ -12,19 +11,6 @@ function moverSlide(direccion) {
 
   const desplazamiento = -Index * 100;
   slider.style.transform = `translateX(${desplazamiento}%)`;
-  let slideIndex = 0; // O el nombre de tu variable de posición actual
-
-function moverSlide(direccion) {
-    const slides = document.querySelectorAll('.slide'); // O tu clase de imágenes
-    slideIndex += direccion;
-    
-    if (slideIndex >= slides.length) { slideIndex = 0; }
-    if (slideIndex < 0) { slideIndex = slides.length - 1; }
-    
-    slides.forEach((slide, i) => {
-        slide.style.display = i === slideIndex ? 'block' : 'none';
-    });
-}
 }
 
 // ---- SISTEMA TÁCTIL PARA CELULARES ----
@@ -42,6 +28,18 @@ sliderContenedor.addEventListener('touchend', (e) => {
   let xFinal = e.changedTouches[0].clientX;
   let diferenciaX = xInicial - xFinal;
 
+  // Si el deslizamiento es mayor a 50 píxeles, cambia de foto
+  if (Math.abs(diferenciaX) > 50) {
+    if (diferenciaX > 0) {
+      moverSlide(1);  /* Deslizó a la izquierda -> Siguiente */
+    } else {
+      moverSlide(-1); /* Deslizó a la derecha -> Anterior */
+    }
+  }
+  
+  xInicial = null; // Reinicia el detector
+});
+  
   // Si el deslizamiento es mayor a 50 píxeles, cambia de foto
   if (Math.abs(diferenciaX) > 50) {
     if (diferenciaX > 0) {

@@ -34,7 +34,9 @@ sliderContenedor.addEventListener('touchend', (e) => {
     if (diferenciaX > 0) {
       moverSlide(1);  /* Deslizó a la izquierda -> Siguiente */
     } else {
-
+    }
+  }
+                                  }
 window.addEventListener('DOMContentLoaded', () => {
     const modal = document.getElementById('modal-bienvenida');
     const btnIngresar = document.getElementById('btn-ingresar');

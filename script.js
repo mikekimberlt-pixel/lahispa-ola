@@ -12,6 +12,19 @@ function moverSlide(direccion) {
 
   const desplazamiento = -Index * 100;
   slider.style.transform = `translateX(${desplazamiento}%)`;
+  let slideIndex = 0; // O el nombre de tu variable de posición actual
+
+function moverSlide(direccion) {
+    const slides = document.querySelectorAll('.slide'); // O tu clase de imágenes
+    slideIndex += direccion;
+    
+    if (slideIndex >= slides.length) { slideIndex = 0; }
+    if (slideIndex < 0) { slideIndex = slides.length - 1; }
+    
+    slides.forEach((slide, i) => {
+        slide.style.display = i === slideIndex ? 'block' : 'none';
+    });
+}
 }
 
 // ---- SISTEMA TÁCTIL PARA CELULARES ----

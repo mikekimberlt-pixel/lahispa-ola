@@ -4,10 +4,10 @@ function moverSlide(direccion) {
   const slider = document.getElementById("slider");
   const totalImagenes = slider.querySelectorAll("a").length;
 
-  Index += direccion;
+  index += direccion;
 
-  if (Index >= totalImagenes) { Index = 0; }
-  if (Index < 0) { Index = totalImagenes - 1; }
+  if (index >= totalImagenes) { index = 0; }
+  if (index < 0) { index = totalImagenes - 1; }
 
   const desplazamiento = -Index * 100;
   slider.style.transform = `translateX(${desplazamiento}%)`;

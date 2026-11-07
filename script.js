@@ -34,5 +34,3 @@ sliderContenedor.addEventListener('touchend', (e) => {
     if (diferenciaX > 0) {
       moverSlide(1);  /* Deslizó a la izquierda -> Siguiente */
     } else {
-    }
-  }

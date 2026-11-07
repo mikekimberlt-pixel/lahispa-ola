@@ -34,6 +34,18 @@ sliderContenedor.addEventListener('touchend', (e) => {
     if (diferenciaX > 0) {
       moverSlide(1);  /* Deslizó a la izquierda -> Siguiente */
     } else {
+
+    window.addEventListener('load', () => {
+    const bienvenida = document.getElementById('pantalla-bienvenida');
+    
+    // Espera 2 segundos mostrando el saludo, luego se desvanece
+    setTimeout(() => {
+        bienvenida.style.opacity = '0';
+        
+        // Lo elimina del documento después de la animación para poder hacer clic en la página
+        setTimeout(() => bienvenida.remove(), 600);
+    }, 2000); 
+});
       moverSlide(-1); /* Deslizó a la derecha -> Anterior */
     }
   }

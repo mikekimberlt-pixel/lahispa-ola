@@ -191,53 +191,6 @@
     }
 </style>
 
-<!-- 3. Lógica Independiente (JavaScript) -->
-<script>
-    (function() {
-        // Ejecución inmediata y aislada para evitar conflictos de variables
-        const modal = document.getElementById('modal-bienvenida');
-        const btn = document.getElementById('btn-ingresar');
-        const input = document.getElementById('input-nombre');
-        const saludo = document.getElementById('cartel-saludo');
-
-        if (!modal || !btn || !input || !saludo) return;
-
-        function procesarIngreso() {
-            let nombre = input.value.trim();
-            if (!nombre) {
-                nombre = "visitante";
-            }
-
-            // 1. Desvanecer y apagar el bloqueo del modal por completo
-            modal.style.opacity = '0';
-            modal.style.pointerEvents = 'none';
-
-            // 2. Personalizar el texto e iniciar la animación del cartel abajo a la izquierda
-            saludo.innerText = `✨ ¡Sea bienvenido a Hispaniola, ${nombre}! ✨`;
-            
-            // Retraso de 400ms para que aparezca después de que el modal empiece a borrarse
-            setTimeout(() => {
-                saludo.classList.add('activo');
-            }, 400);
-
-            // 3. Desvanecer el cartelito de la esquina tras 5 segundos
-            setTimeout(() => {
-                saludo.classList.remove('activo');
-            }, 5400);
-        }
-
-        // Eventos nativos e instantáneos
-        btn.onclick = function() {
-            procesarIngreso();
-        };
-
-        input.onkeypress = function(e) {
-            if (e.key === 'Enter') {
-                procesarIngreso();
-            }
-        };
-    })();
-</script>
 
     </body>
    </html>

@@ -1,21 +1,17 @@
-let index = 0;
+let Index = 0;
 let xInicial = null;
 
 function moverSlide(direccion) {
-    const slider = document.getElementById("slider");
-    const totalImagenes = slider.querySelectorAll("a").length;
+  const slider = document.getElementById("slider");
+  const totalImagenes = slider.querySelectorAll("a").length;
 
-    index += direccion;
-    
-    if (index >= totalImagenes) { 
-        index = 0; 
-    }
-    if (index < 0) { 
-        index = totalImagenes - 1; 
-    }
-    
-    const desplazamiento = -index * 100;
-    slider.style.transform = translateX(${desplazamiento}%);
+  Index += direccion;
+
+  if (Index >= totalImagenes) { Index = 0; }
+  if (Index < 0) { Index = totalImagenes - 1; }
+
+  const desplazamiento = -Index * 100;
+  slider.style.transform = `translateX(${desplazamiento}%)`;
 }
 
 // ---- SISTEMA TÁCTIL PARA CELULARES ----

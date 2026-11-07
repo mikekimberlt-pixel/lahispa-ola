@@ -1,3 +1,4 @@
+let Index = 0;
 let xInicial = null;
 
 function moverSlide(direccion) {
@@ -39,9 +40,3 @@ sliderContenedor.addEventListener('touchend', (e) => {
   
   xInicial = null; // Reinicia el detector
 });
-  
-  // Si el deslizamiento es mayor a 50 píxeles, cambia de foto
-  if (Math.abs(diferenciaX) > 50) {
-    if (diferenciaX > 0) {
-      moverSlide(1);  /* Deslizó a la izquierda -> Siguiente */
-    } else {

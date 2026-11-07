@@ -144,13 +144,42 @@ nav{
     flex-direction: column;
     gap: 8px;
     align-items: center;
-
 }
-
-
-    
 .carrito img{
     display: flex;
     margin-left: auto;
     margin-right: auto;
 }
+
+
+.galeria-trabajos {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); 
+  gap: 20px;                             /* Espacio limpio entre las fotos */
+  padding: 30px 20px;                    /* Más espacio libre respecto a los bordes */
+  max-width: 1200px;
+  margin: 0 auto;                        /* Centra el bloque de fotos en la pantalla */
+}
+
+/* Quita por completo las líneas azules de los links */
+.galeria-trabajos a {
+  text-decoration: none !important;      /* Asegura quitar el subrayado azul */
+  display: block;
+}
+
+/* Controla que las fotos sean del mismo tamaño y no se deformen */
+.galeria-trabajos img {
+  width: 100%;
+  height: 200px;                         /* Tamaño controlado (no grande) */
+  object-fit: cover;                     /* Ajuste limpio sin estirar la imagen */
+  border-radius: 6px;                    /* Bordes suavemente redondeados */
+  display: block;
+}
+
+/* Vista para celulares (pasa a 2 columnas para que no queden minúsculas) */
+@media (max-width: 768px) {
+  .galeria-trabajos {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+}    

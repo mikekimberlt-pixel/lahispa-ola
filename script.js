@@ -1,58 +1,62 @@
+// Declaramos las variables principales a nivel global para que todo el archivo las comparta
+let index = 0;
+let xInicial = null;
+let slider = null;
+let totalImagenes = 0;
+
+// Creamos la función de movimiento a nivel global para que el HTML (onclick) pueda leerla siempre
+window.moverSlider = function(direccion) {
+    // Si el HTML llama a la función antes de que el slider exista en el DOM, evitamos el error
+    if (!slider || totalImagenes === 0) return;
+
+    index += direccion;
+
+    if (index >= totalImagenes) {
+        index = 0;
+    }
+    if (index < 0) {
+        index = totalImagenes - 1;
+    }
+
+    const desplazamiento = -index * 100;
+    slider.style.transform = `translateX(${desplazamiento}%)`;
+};
+
+// Vinculamos los elementos del DOM e inicializamos el sistema táctil apenas la página cargue su estructura
 document.addEventListener("DOMContentLoaded", () => {
-    let index = 0;
-    let xInicial = null;
-
-    // Buscamos los elementos del DOM apenas la estructura HTML esté lista
-    const slider = document.getElementById('slider');
+    slider = document.getElementById('slider');
     
-    // Si por alguna razón el slider no existe en la página actual, frenamos para evitar errores
-    if (!slider) return;
+    if (!slider) {
+        console.warn("No se encontró ningún elemento con el ID 'slider'.");
+        return;
+    }
 
-    const totalImagenes = slider.querySelectorAll('img').length;
-
-    // Tu función para mover el carrusel
-    window.moverSlider = function(direccion) {
-        index += direccion;
-
-        if (index >= totalImagenes) {
-            index = 0;
-        }
-        if (index < 0) {
-            index = totalImagenes - 1;
-        }
-
-        const desplazamiento = -index * 100;
-        slider.style.transform = `translateX(${desplazamiento}%)`;
-    };
+    totalImagenes = slider.querySelectorAll('img').length;
+    console.log(`Slider inicializado con éxito. Total de imágenes: ${totalImagenes}`);
 
     // --- SISTEMA TÁCTIL PARA CELULARES ---
-    const sliderContenedor = document.getElementById('slider'); // O el ID de tu contenedor principal
+    // Usamos directamente la variable 'slider' que ya encontramos arriba
+    slider.addEventListener('touchstart', (e) => {
+        xInicial = e.touches[0].clientX; // Corregido: accedemos al primer punto de contacto
+    });
 
-    if (sliderContenedor) {
-        // Detecta cuándo el dedo toca la pantalla
-        sliderContenedor.addEventListener('touchstart', (e) => {
-            xInicial = e.touches[0].clientX;
-        });
+    slider.addEventListener('touchend', (e) => {
+        if (!xInicial) return;
 
-        // Detecta cuándo el dedo se mueve y se levanta
-        sliderContenedor.addEventListener('touchend', (e) => {
-            if (!xInicial) return;
+        let xFinal = e.changedTouches[0].clientX; // Corregido: accedemos al toque que cambió
+        let diferenciaX = xInicial - xFinal;
 
-            let xFinal = e.changedTouches[0].clientX;
-            let diferenciaX = xInicial - xFinal;
-
-            // Ajustá este valor (50) si querés que sea más o menos sensible al deslizar
-            if (Math.abs(diferenciaX) > 50) {
-                if (diferenciaX > 0) {
-                    // Deslizó hacia la izquierda -> Siguiente imagen
-                    moverSlider(1);
-                } else {
-                    // Deslizó hacia la derecha -> Anterior imagen
-                    moverSlider(-1);
-                }
+        // Sensibilidad del deslizamiento (50 píxeles)
+        if (Math.abs(diferenciaX) > 50) {
+            if (diferenciaX > 0) {
+                // Deslizó hacia la izquierda -> Siguiente imagen
+                window.moverSlider(1);
+            } else {
+                // Deslizó hacia la derecha -> Anterior imagen
+                window.moverSlider(-1);
             }
-            // Reiniciamos el punto inicial
-            xInicial = null;
-        });
-    }
+        }
+        // Reiniciamos el punto inicial
+        xInicial = null;
+    });
 });

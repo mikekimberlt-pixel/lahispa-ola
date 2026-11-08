@@ -1,3 +1,7 @@
+document.addEventListener("DOMContentLoaded", () => {
+    // Esto fuerza a que el slider se posicione correctamente en la foto 0 al cargar
+    moverSlide(0); 
+});
 
 let Index = 0;
 let xInicial = null;
@@ -15,12 +19,11 @@ function moverSlide(direccion) {
   slider.style.transform = `translateX(${desplazamiento}%)`;
 }
 
-
+// ---- SISTEMA TÁCTIL PARA CELULARES ----
+/ Activa el movimiento automático cada 3 segundos (3000 milisegundos)
 let autoPlayInterval = setInterval(() => {
     moverSlide(1);
 }, 3000);
-
-// ---- SISTEMA TÁCTIL PARA CELULARES ----
 const sliderContenedor = document.getElementById("slider");
 
 // Detecta cuando el dedo toca la pantalla

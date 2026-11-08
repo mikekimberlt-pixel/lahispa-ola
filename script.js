@@ -1,7 +1,3 @@
-document.addEventListener("DOMContentLoaded", () => {
-    // Esto fuerza a que el slider se posicione correctamente en la foto 0 al cargar
-    moverSlide(0); 
-});
 
 let Index = 0;
 let xInicial = null;

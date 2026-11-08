@@ -23,7 +23,7 @@ function moverSlide(direccion) {
 / Activa el movimiento automático cada 3 segundos (3000 milisegundos)
 let autoPlayInterval = setInterval(() => {
     moverSlide(1);
-}, 1000);
+}, 3000);
 const sliderContenedor = document.getElementById("slider");
 
 // Detecta cuando el dedo toca la pantalla

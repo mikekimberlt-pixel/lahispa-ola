@@ -20,7 +20,6 @@ function moverSlide(direccion) {
 }
 
 // ---- SISTEMA TÁCTIL PARA CELULARES ----
-/ Activa el movimiento automático cada 3 segundos (3000 milisegundos)
 let autoPlayInterval = setInterval(() => {
     moverSlide(1);
 }, 4000);

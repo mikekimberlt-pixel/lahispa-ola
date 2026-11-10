@@ -50,3 +50,10 @@ sliderContenedor.addEventListener('touchend', (e) => {
 });
 
 
+let nombre = prompt("Por favor, introduce tu nombre");
+
+if (nombre) {
+    alert("Sea bienvenido " + nombre);
+} else {
+    alert("Sea bienvenido"); // Saludo genérico si cancela o lo deja vacío
+}

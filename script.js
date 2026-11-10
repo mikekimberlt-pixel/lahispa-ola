@@ -48,3 +48,8 @@ sliderContenedor.addEventListener('touchend', (e) => {
   
   xInicial = null; // Reinicia el detector
 });
+
+
+// Pregunta el nombre al usuario al entrar a la página
+let nombre = prompt("Por favor, introduce tu nombre:"); alert("Sea bienvenido " + nombre);
+

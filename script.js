@@ -50,6 +50,12 @@ sliderContenedor.addEventListener('touchend', (e) => {
 });
 
 
-// Pregunta el nombre al usuario al entrar a la página
-let nombre = prompt("Por favor, introduce tu nombre:"); alert("Sea bienvenido " + nombre);
+
+let nombre = prompt("Por favor, introduce tu nombre");
+
+if (nombre) {
+    alert("Sea bienvenido " + nombre);
+} else {
+    alert("Sea bienvenido"); // Saludo genérico si cancela o lo deja vacío
+}
 

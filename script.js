@@ -50,8 +50,41 @@ sliderContenedor.addEventListener('touchend', (e) => {
 });
 
 
-let nombre = prompt("Por favor, introduce tu nombre");
 
+  const modal = document.getElementById('modal-bienvenida');
+  const tarjetaModal = modal.querySelector('div');
+  const inputNombre = document.getElementById('input-nombre');
+  const btnAceptar = document.getElementById('btn-aceptar');
+
+  btnAceptar.addEventListener('click', () => {
+    const nombre = inputNombre.value.trim();
+
+    if (nombre !== '') {
+      // 1. Oculta el teclado en celulares
+      inputNombre.blur();
+
+      // 2. Cambia el contenido del modal para mostrar la bienvenida
+      tarjetaModal.innerHTML = `
+        <h3 style="margin: 10px 0; color: #222;">¡Sea bienvenido, ${nombre}!</h3>
+      `;
+
+      // 3. Cierra el modal automáticamente después de 2 segundos (2000 ms)
+      setTimeout(() => {
+        modal.style.display = 'none';
+      }, 2000);
+      
+    } else {
+      alert('Por favor, escribe tu nombre para continuar.');
+    }
+  });
+
+  // Permite enviar con la tecla Enter / Ir
+  inputNombre.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      btnAceptar.click();
+    }
+  });
 if (nombre) {
     alert("Sea bienvenido " + nombre);
 } else {
